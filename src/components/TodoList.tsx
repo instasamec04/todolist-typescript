@@ -7,9 +7,17 @@ type TodoListProps = {
   onRemove(id: number): void;
 };
 const TodoList: React.FC<TodoListProps> = ({ todos, onRemove, onToggle }) => {
-if(todos.length === 0 ) {
-  return <p className="center" style={{color: "white", fontSize: "2rem", fontWeight: 700}}> Пока дел нет</p>
-}
+  if (todos.length === 0) {
+    return (
+      <p
+        className="center"
+        style={{ color: "white", fontSize: "2rem", fontWeight: 700 }}
+      >
+        {" "}
+        Пока дел нет
+      </p>
+    );
+  }
 
   return (
     <ul>
@@ -21,18 +29,18 @@ if(todos.length === 0 ) {
         // {console.log(todo.id)}
         return (
           <li className={classes.join(" ")} key={todo.id}>
-            <label>
+            <label className="lab">
               <input
-              type="checkbox"
-              // checked={todo.completed}
-              onChange={onToggle.bind(null, todo.id)}
+                type="checkbox"
+                // checked={todo.completed}
+                onChange={onToggle.bind(null, todo.id)}
               />
               {/* встроенная функция в js bind, возвращает новую функцию и не будет ее вызывать */}
               <span>{todo.title}</span>
               <i
                 className="material-icons red-text"
                 onClick={() => onRemove(todo.id)}
-                >
+              >
                 delete
               </i>
             </label>
